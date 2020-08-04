@@ -1,0 +1,63 @@
+﻿@model TN.Models.Extended.TumEkranlar
+<footer id="footer" style="padding-top:40px;">
+  
+    <div class="section">
+    
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h6 class="title" style="color:#808080">Girişler</h6>
+                        <ul class="footer-links">
+                            <li><a href="@Url.Action("Login","User")"><i class="fa fa-user"></i>Giriş Yap</a></li>
+                            <li><a href="@Url.Action("Registration","User")"><i class="fa fa-user-plus"></i>Üye Ol</a></li>
+                            <li><a href="@Url.Action("UrunEkle","Post")"><i class="fa fa-file-image-o"></i>İlan Ver</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h6 class="title" style="color:#808080">Kategoriler</h6>
+                        <ul class="footer-links">
+                            @foreach (var item in Model.Kategorilers)
+                            {
+                                <li><a href="@Url.Action("KatGore","Urun",new {id=item.KategoriId })">@item.KategoriAdi (@item.Urunler.Where(z => z.KategoriId == item.KategoriId).Count())</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h6 class="title" style="color:#808080">Son Yüklenenler</h6>
+                        <ul class="footer-links">
+                            @foreach (var item in Model.Urunlers)
+                            {
+                                <li><img src="@item.AnaGorsel.Resimler.ImageUrl" style="width:30px;height:30px" />  <a href="@Url.Action("Detay","Home",new { id=item.UrunId})"> @item.Baslik</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h6 class="title" style="color:#808080">Bize Ulaşın</h6>
+                        <ul class="footer-links">
+                            <li><a href="@Url.Action("Index","SartlarKosullar")">Şartlar & Koşullar</a></li>
+                            <li><a href="@Url.Action("GizlilikPolitikamiz","SartlarKosullar")">Gizlilik Politikamız</a></li>
+                            <li><a href="@Url.Action("Kurallar","SartlarKosullar")">Kurallarımız</a></li>
+                            <li><a><i class="fa fa-instagram"></i>teklifinedir</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>info@teklifinedir.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+

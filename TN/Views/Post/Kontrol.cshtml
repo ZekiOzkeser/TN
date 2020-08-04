@@ -1,0 +1,83 @@
+﻿@using TN.Models
+@model TN.Models.Extended.TumEkranlar
+
+@{
+    ViewBag.Title = "Kontrol";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30" style="padding-left:5px">
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="text-muted" style="padding-top:30%">
+                                <div class="row-no-gutters">
+                                    <dl>
+                                        <dt>Başlık :  </dt>
+                                        <dd>@(((Urunler)Session["urun"]).Baslik)</dd>
+                                        <dt>Kategori :</dt>
+                                        <dd>@Model.Kategorilers.Where(x => x.KategoriId == ((Urunler)Session["urun"]).KategoriId).Select(x => x.KategoriAdi).Single()</dd>
+                                        <dt>Açıklama : </dt>
+                                        <dd> @(((Urunler)Session["urun"]).Aciklama)</dd>
+                                        <dt>Altlimit :</dt>
+                                        <dd>@(((Urunler)Session["urun"]).AltLimit) <i class="fa fa-try"></i></dd>
+                                        <dt>Durumu :</dt>
+                                        <dd>@Model.Durums.Where(z => z.DurumId == (((Urunler)Session["urun"]).DurumId)).Select(x => x.Durumu).Single()</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-2 col-sm-6 ">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @{ int i = 0;}
+                                    @foreach (var image in Session["res"] as List<Resimler>)
+                                    {
+                                        i++;
+                                        var active = i == 1 ? "active" : "";
+                                        <div class="carousel-item @active">
+                                            <img src="@image.ImageUrl" class="d-block w-100" alt="...">
+                                        </div>
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Geri</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">İleri</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        <button type="submit" class="btn btn-success"> Ürünü Yayınla</button>
+                    }
+                    <div style="margin-top:5px"><a class="btn btn-xs btn-default" href="@Url.Action("UrunIndex", "Kullanici")">İptal</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+@if (TempData["msg"] != null) { <script>$.alert({title:'',content:'@TempData["msg"]',});</script> }
+
+
+
+}

@@ -1,0 +1,20 @@
+﻿
+@model IEnumerable<TN.Models.Urunler>
+
+
+<div class="aside">
+    <h4 class="title">En Çok Bakılanlar</h4>
+    @foreach (var i in Model)
+    {
+        <div class="product-widget">
+            <div class="product-img">
+                <img src="@i.AnaGorsel.Resimler.ImageUrl" alt="">
+            </div>
+            <div class="product-body">
+                <p class="product-category">@i.Kategoriler.KategoriAdi</p>
+                <h5 class="product-name"><a href="@Url.Action("Detay","Home",new { id=i.UrunId})">@i.Baslik</a></h5>
+            </div>
+        </div>
+    }
+
+</div>

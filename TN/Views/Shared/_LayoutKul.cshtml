@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="teklifiNedir">
+    <meta name="author" content="Zeki Ozkeser">
+    <meta name="keywords" content="teklifiNedir">
+    <link rel="icon" href="@Url.Content("~/Content/img/logo.png")" type="image/png">
+    <title>@ViewBag.Title  teklifiNedir.com</title>
+    <link href="~/Content/Admin/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/Content/Admin/tn/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/Admin/tn/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/tn/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/Admin/tn/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/Content/Admin/tn/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/Admin/css/theme.css" rel="stylesheet" media="all">
+    <link href="~/Content/jquery-confirm.css" rel="stylesheet" />
+    <link href="~/Content/Admin/tn/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/lightbox2-2.11.1/src/css/lightbox.css" rel="stylesheet" />
+    <script data-ad-client="ca-pub-1065834701153653" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158030969-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-158030969-1');
+    </script>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NP98BGX');</script>
+
+</head>
+
+<body class="animsition" style="animation-duration: 900ms; opacity: 1;">
+    <div class="page-wrapper">
+        <div class="page-content--bgf7">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/Content/Admin/tn/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="~/Content/jquery-confirm.js"></script>
+
+    <script src="~/Content/Admin/tn/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/Content/Admin/tn/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="~/Content/Admin/tn/animsition/animsition.min.js"></script>
+    <script src="~/Content/Admin/tn/select2/select2.min.js"></script>
+    <script src="~/Content/Admin/js/main.js"></script>
+    <script src="~/Content/lightbox2-2.11.1/src/js/lightbox.js"></script>
+    <script src="~/Scripts/tklf.js"></script>
+    @RenderSection("Scripts", false)
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NP98BGX"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+﻿@using TN.Models
+@model TN.Models.Extended.TumEkranlar
+
+@{
+    ViewBag.Title = "Resim Yükle";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+<tag>Urunduzenleme</tag>
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+    <div class="page-content--bgf7">
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container">
+                    <div class="au-card m-b-30">
+                        <div class="col-lg-10">
+                            <a class="btn btn-md" href="@Url.Action("Index","Kullanici")">Geri</a>
+                            <div class="login-content" style="background-color:rgba(237, 255, 0, 0.53)">
+                                <table class="table">
+                                        <tr>
+                                            <td class="title">Başlık</td>
+                                            <td class="text"> @(((Urunler)Session["ud"]).Baslik)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">Kategori</td>
+                                            <td class="text">@Model.Kategorilers.Where(x => x.KategoriId == ((Urunler)Session["ud"]).KategoriId).Select(x => x.KategoriAdi).Single()</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">Alt Limit</td>
+                                            <td class="text">@(((Urunler)Session["ud"]).AltLimit) <i class="fa fa-try"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">Açıklama</td>
+                                            <td class="text">@(((Urunler)Session["ud"]).Aciklama)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title">Durumu</td>
+                                            <td class="text">@Model.Durums.Where(z => z.DurumId == (((Urunler)Session["ud"]).DurumId)).Select(x => x.Durumu).Single()</td>
+                                        </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="au-card m-b-30">
+                        <div class="col-md-6">
+
+                            @using (Html.BeginForm("ResDis", "Post", FormMethod.Post))
+                            {
+                            
+                                <div class="form-group" style="margin-left:10px;">
+                                    <table style="background-color:#b6ff00" border="1">
+                                        <thead style="background-color:#d3f3ab">
+                                            <tr>
+                                                <th>   <div class="col-md-1"> Seç </div> </th>
+                                                <th><div class="col-md-4"> Resim</div> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Resimlers)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" name="res" id="@item.ResimId" value="@item.ResimId" />
+                                                    </td>
+
+                                                    <td><div class="col-md-4"> <img src="@item.ImageUrl" /></div> </td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-5">
+                                        <input type="submit" value="Seçilenleri Sil" class="btn btn-danger btn-sm Sil" id="Sil"/>
+                                    </div>
+                                </div>
+                     
+                            }
+
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="login-content">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <h5>Resim Yükle</h5>
+                                        <div id="FileBrowse">
+                                            @using (Html.BeginForm("ResimDuzenle", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
+                                                
+                                                    <div class="col-md-6">
+                                                        <input type="file" id="Files" name="resimDeneme2" multiple="multiple" />
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <input type="submit" id="UploadBtn" class="btn btn-xs btn-danger" value=" Yükle" />
+                                                    </div>
+                                               
+                                            }
+
+                                        </div>
+
+                                      
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+$("#sil").click(function () {
+    var id = [];
+    var sayac = 0;
+    $("input[name='res']:checked").each(function () {
+        id[sayac] = $(this).val();
+        sayac++;
+    });
+
+    $.ajax({
+        type: "POST",
+        url: '/Post/rSil',
+        data: { id },
+        dataType: "json",
+        success: function (gelenDeg) {
+            if (gelenDeg === "1") {
+                alert("Silme işlemi başarıyla gerçekleşti!");
+                Makaleler();
+            }
+        },
+        error: function () {
+            alert("Makale(ler) Silinirken hata oluştu!");
+        }
+    });
+});
+
+</script>

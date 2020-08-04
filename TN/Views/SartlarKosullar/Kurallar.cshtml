@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Kurallar";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10" style="padding:25px">
+            <div class="logo-icon" style="bottom:30px">
+                <img src="~/Content/img/logo-zek.png" width="50" height="75" />
+            </div>
+            <div style="margin:15px"><a class="btn btn-xs btn-default" href="@Url.Action("Index", "Home")">Ana Sayfa</a></div>
+            <div style="margin:15px"><a class="btn btn-xs btn-default" href="@Url.Action("GizlilikPolitikamiz", "SartlarKosullar")">Gizlilik Politikamız</a></div>
+            <div style="margin:15px"><a class="btn btn-xs btn-default" href="@Url.Action("Index", "SartlarKosullar")">Sözleşme</a></div>
+            <div class="text-body">
+                <h2>Teklifinedir 'in başlıca kuralları</h2>
+                <br />Teklifinedir.com sizlerle birlikte gün geçtikçe büyüyecek ve gelişecek bir platformdur.
+                <br /> Siteye üye olan üyelerimizden beklediğimiz ve uyulması gereken önemli kural ve davranışlar vardır.
+                <br /> Siteye üye olduğunuz da belirtmiş olduğunuz bilgiler size ait olmalıdır.
+                <br /> Satmak istediğiniz ürün size ait olmalıdır;
+                <br /> Görseller o ürüne ait değilse belirtilmelidir.
+                <br /> İlanlarda fotoğraflar aydınlık, net ve satılan ürünü açıkça gösterecek şekilde olmalıdır.
+                <br /> Dolandırıcılık ve spama karşı kurallarımızın ihlal edilmesi yasaktır.
+                <br /> Teklif verirken makul teklifler yapmalı ve gerçekten satmayı düşündüğünüz ürünleri paylaşmalısınız..
+                <br /> Alıcı ve Satıcı olarak sizler arasında mesajlaşmalarda küfür, taciz, korkutmak, tehdit etmek, vb.. yazışmaların olmamalıdır,
+                <br /> Kendinizi güvene almadan ürünlerinizi kargolamamanız  veya tam tersi olarak teyit almadan ödeme yapmamanızı tavsiye ederiz. Aksi takdirde doğacak yükümlülükten sitemiz sorumlu değildir.
+                <br /><br />Yasalara uymanızı, satışlarda dürüst davranmalısınız  ;
+                <br /><br /> •	Hakaret içeren, karalayıcı, dolandırıcılık amaçlı ya da başka şekilde yasaları ihlal eden ilan ya da mesajlar,
+                <br /> •	Tanıtım veya gizlilik hakkını ihlal eden ilan ya da mesajlar,
+                <br /> •	Herhangi bir donanım, yazılım veya ekipmana zarar verme amaçlı virüs, solucan, Truva atı, casus yazılım veya bilgisayar kodu, dosya ya da program göndermek (tüm virüsler),
+                <br /> •	Teklifinedir.com’ u dolandırıcılık için ya da kanunsuz herhangi bir amaçla kullanmak,
+                <br /> •     Kullanıcılarımız hakkında bilgi toplamak ya da bilgi toplamak amacıyla kullanıcılarımızı harici internet siteleri veya uygulamalara yönlendirmek. Teklifinedir.com’ un ya da server ve ağlarımızın çalışmasına müdahale etmek ya da kesintiye uğratmak. Herhangi bir kişinin teklifinedir.com kullanmasını kısıtlamak veya engellemek. Tarafımızca yetki verilmeden teklifinedir.com’ un herhangi bir bölümünü çoğaltmak, değiştirmek, dağıtmak veya başka şekilde yararlanmak,
+                <br /> •	Teklifinedir.com’ un herhangi bir parçasına tersine mühendislik, kaynak koda dönüştürme gibi işlemler uygulamak,
+                <br /> •	Sistematik olarak içeriğimizi indirmek,
+                <br /> •	Halka açık bir arama motoru olmaksızın, herhangi bir robot, site arama uygulaması ya da diğer manuel veya otomatik cihazları kullanarak, indeksleme, "data mine" ya da herhangi bir başka yöntemle içeriğimizi toplamak,
+                <br /> •	Olası bir alıcıya ya da ilan sahibine cinsiyetiyle, ırkıyla, diniyle ya da cinsel yönelimiyle veya medeni haliyle ilgili sorular sormak.
+                <br /> •	Uyuşturucu , Alkol ( Tütün, Alkollü içecekler, E-sigaralar ve e-likit sıvıları, Yasadışı ilaçlar, Reçeteli & Reçetesiz İlaçlar ve takviyeler),
+                <br /> •	Yetişkin İçeriği ( Pornografi, Yetişkin Oyuncakları )
+                <br /> •	 Hayvanlar ( Canlı hayvanlar )
+                <br /> •	Silah ve Diğer Tehlikeli Ürünler
+                <br /> •	Diğerleri.
+                <br /><br />
+                <br />Belirli bir konuda sorularınız için info@teklifinedir.com sitesine mail atabilirsiniz.
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Action("Footer", "Home")
+

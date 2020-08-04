@@ -1,0 +1,114 @@
+﻿@model IEnumerable<TN.Models.Urunler>
+@{
+    ViewBag.Title = "Tum Urunler";
+  Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2">
+                                <thead>
+                                    <tr>
+                                        <th>Ana Görsel</th>
+                                        <th>UrunId</th>
+                                        <th>Kategori</th>
+                                        <th>Başlık</th>
+                                        <th>Açıklama</th>
+                                        <th>Durum</th>
+                                        <th>AltLimit</th>
+                                        <th>Urun Oluşturma</th>
+                                        <th>Yayın</th>
+                                        <th>Kullanıcı</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="tr-shadow">
+                                            <td><img src="@item.AnaGorsel.Resimler.ImageUrl" width="100" height="100" /> </td>
+                                            <td>@item.UrunId</td>
+                                            <td>@item.Kategoriler.KategoriAdi</td>
+                                            <td>@item.Baslik</td>
+                                            <td>@item.Aciklama</td>
+                                            <td>@item.Durum.Durumu</td>
+                                            <td>@item.AltLimit</td>
+                                            <td>@item.UrunOlusturma.Date</td>
+                                            <td>@item.Yayın</td>
+                                            <td>@item.User.FullName</td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <a class="item" data-toggle="tooltip" data-placement="top" title="Detay" href="@Url.Action("DetayUrun","Kullanici",new { id = item.UrunId })">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </a>
+                                                    <a class="item" data-toggle="tooltip" data-placement="top" title="Düzenle" href="@Url.Action("UrunDuzenle","Post",new { id= item.UrunId })">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </a>
+                                                    <button class="item Sil" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" data-target="#exampleModal" name="@item.UrunId ">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    <script>
+        $(".Sil").click(function () {
+            var ID = $(this).attr('name');
+            var delTR = $(this).closest("tr");
+            $.confirm({
+                title: 'Silme İşlemi !',
+                content: 'Silmek istediğinizden emin misiniz ?',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Sil',
+                        btnClass: 'btn-red',
+                        action: function () {
+                            $.ajax({
+                                url: '/Admin/UrunSil/' + ID,
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function (result) {
+                                    if (result == "1") {
+                                        delTR.fadeOut(500, function () {
+                                            delTR.remove();
+                                        });
+
+                                    }
+                                    else {
+                                        alert("İşlem sırasında hata oluştu");
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    Vazgeç: function () {
+                        $.alert('İşlemden vazgeçildi..');
+                    }
+                }
+            });
+        });
+    </script>
+}

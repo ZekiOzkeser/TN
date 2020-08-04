@@ -1,0 +1,46 @@
+﻿@model TN.Models.Durum
+
+@{
+    ViewBag.Title = "Durum Duzenle";
+ Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("Mobile", "Admin")
+
+@Html.Action("Desktop", "Admin")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="col-lg-10">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                <h4>Kategoriler</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.DurumId)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Durumu, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Durumu, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Durumu, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

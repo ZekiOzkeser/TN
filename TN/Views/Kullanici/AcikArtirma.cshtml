@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+<style>
+    .card-grid {
+        float: left;
+        width: 170px;
+        height: 170px;
+        margin: 5px;
+        border: 1px solid #f1f1f1;
+    }
+
+    .back {
+        text-align: center;
+    }
+        .back h1 {
+            margin-top: 50px;
+            font-size: 100px;
+        }
+
+        .back a {
+        }
+
+    .front {
+        text-align: center;
+    }
+
+        .front h1 {
+            margin-top: 50px;
+        }
+</style>
+
+
+@Html.Action("HeaderDesktop", "Kullanici")
+@Html.Action("HeaderMobile", "Kullanici")
+
+
+<div class="page-content--bgf7">
+    @Html.Partial("Breadcrumb")
+    <div class="main-content">
+
+        <div class="section__content--p30">
+            <div class="container">
+                <div class="row">
+                    <div id="grid-containter" class="container">
+                        <div class="card-grid" style="perspective: 300px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>A</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>Ç</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>I</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>L</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>I</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>Ş</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>İ</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>Ç</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>İ</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><h1>N</h1></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"><img src="~/Content/img/lg.png" /></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><img src="~/Content/img/lg.png" /></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;" id="a"><h1>@Session["rakam1"]</h1></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><img src="~/Content/img/lg.png" /></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;" id="a"><h1>@Session["rakam2"]</h1></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><img src="~/Content/img/lg.png" /></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;" id="a"><h1>@Session["rakam3"]</h1></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"><img src="~/Content/img/lg.png" /></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;" id="a"><h1>@Session["rakam4"]</h1></div>
+                        </div>
+                        <div class="card-grid" style="perspective: 200px; position: relative; transform-style: preserve-3d;">
+                            <div class="front" style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: all 0.5s ease-out 0s; transform: rotateY(0deg);"></div>
+                            <div class="back" style="backface-visibility: hidden; transform-style: preserve-3d; position: relative; z-index: 0; height: 100%; width: 100%; transform: rotateY(-180deg); transition: all 0.5s ease-out 0s;"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@Html.Action("AltMenu")
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script src="https://cdn.rawgit.com/download/jQuery-Touch-Events/0.9.0/src/jquery.mobile-events.min.js"></script>
+<script src="https://cdn.rawgit.com/nnattawat/flip/v1.1.2/dist/jquery.flip.min.js"></script>
+<script>
+    $(".card-grid").flip({
+        trigger: 'hover',
+        speed: '1000'
+    });
+</script>
+

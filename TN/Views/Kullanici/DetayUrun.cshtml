@@ -1,0 +1,221 @@
+﻿@using TN.Models
+@model TN.Models.Extended.AnaSayfa
+@{
+    ViewBag.Title = "Ürün";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    @Html.Partial("Breadcrumb")
+    <div class="main-content">
+        <div class="section__content--p35">
+            <div class="container-fluid">
+                <div id="aside" class="col-md-2">
+                    @Html.Action("Kategoriler")
+                    @Html.Action("EnCokBakilanlar")
+                </div>
+                <div class="row">
+                    <div class="col-md-4" id="slider">
+                        <div class="row">
+                            <div class="span5" id="carousel-bounding-box">
+                                <div class="carousel slide" id="myCarousel">
+                                    <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a> <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
+                                    <div class="carousel-inner">
+                                        @{ int i = 0;}
+                                        @{ int l = 0;}
+                                        @foreach (var item in Model.Resimlers)
+                                        {
+                                            i++;
+                                            l++;
+                                            var active = i == 1 ? "active" : "";
+                                            <div class="@active item " data-slide-number="@l">
+                                                <a href="@item.ImageUrl" data-lightbox="@item.ImageUrl"><img src="@item.ImageUrl"></a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-12 text-center">  <h3>@Html.DisplayFor(m => m.Urunler.Baslik)</h3></div>
+                        <div class="col-12 text-right"> <h6>@Html.DisplayFor(m => m.Il.Ad) / @Html.DisplayFor(m => m.Ilce.Ad)</h6></div>
+                        <div class="col-12 table-responsive" style="background-color:rgba(232, 251, 67, 0.11)">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="a">İlan Veren</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.User.FirstName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a">İlan No</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.UrunId)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a">Kategori</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.Kategoriler.KategoriAdi)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a"></td>
+                                        <td class="text-right">@Html.DisplayFor(m => m.Urunler.Aciklama)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a">Durumu</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.Durum.Durumu)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @if ((((User)Session["user"]).UserID) == Model.Urunler.UserID)
+                        {<div class="col-md-3" style="float:left">
+                                <div class="row">
+                                    <div style="margin-top:5px"><a class="btn btn-xs btn-default" href="@Url.Action("UrunIndex", "Kullanici")">Geri Dön</a></div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="fc-button-group" style="margin-top:15px">
+                                <div class="col-md-3" style="float:right">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target=".bd-example-modal-sm">
+                                            <i class="fa fa-try"></i> Teklif Ver
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="float:left">
+                                    <div class="row">
+                                        <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="@Model.Urunler.UserID" style="margin-top:5px;margin-right:10px"><i class="fa fa-send"></i> Ürün Hakkında Soru Sorabilirsin</button>
+                                        <div style="margin-top:5px;margin-top:5px"><a class="btn btn-xs btn-default" href="@Url.Action("UrunIndex", "Kullanici")">Geri Dön</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="col-md-8" style="margin-top:5px">
+                        <div class="row hidden-phone">
+                            @{int g = 0;}
+                            @foreach (var item in Model.Resimlers)
+                            {
+                                int k = g++;
+                            <div class="col-sm-1" style="margin-right:20px">
+                                <a class="thumbnail" id="carousel-selector-@k" style="width:70px;height:70px">  <img src="@item.ImageUrl" style="width:50px;height:50px" />    </a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Action("Urun1", "Urun")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun2", "Urun")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun3", "Urun")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun4", "Urun")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Teklifin Nedir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="recipient-name" class="col-form-label">Teklifiniz :</label>
+                <input id="Tutar2" name="Tutar" style="border-bottom-color:black" required /><i class="fa fa-try"></i>
+                <input type="text" id="UrunId" value="@Model.Urunler.UrunId" class="hidden" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-danger" id="BtnTk" onclick="Teklifver()"><i class="fa fa-try"></i> Teklif Ver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Yeni Mesaj</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Kime :</label>
+                        <label class="col-form-label">@Model.Urunler.User.FullName</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Ürün :</label>
+                        <label class="col-form-label">@Model.Urunler.Baslik</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Mesajınız:</label>
+                        <textarea class="form-control" id="MesajIcerik" name="MesajIcerik" required></textarea>
+                        <label id="errMsj3" style="display:none;color:red;font-weight:bold">Mesaj içeriği boş..</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-warning" onclick="return Mesaj3()" id="Button2">Mesaj Yolla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Action("AltMenu")
+
+<script>jQuery(document).ready(function ($) { $('#myCarousel').carousel({ interval: 3000 }); $('#carousel-text').html($('#slide-content-0').html()); $('[id^=carousel-selector-]').click(function () { var id_selector = $(this).attr("id"); var id = id_selector.substr(id_selector.length - 1); var id = parseInt(id); $('#myCarousel').carousel(id); }); $('#myCarousel').on('slid', function (e) { var id = $('.item.active').data('slide-number'); $('#carousel-text').html($('#slide-content-' + id).html()); }); });</script>
+
+
+@section Scripts{
+    @if (TempData["msg"] != null)
+    {
+        <script>
+            $.alert({
+                title: '',
+                content: '@TempData["msg"]',
+            });
+        </script>
+    }
+    <script>lightbox.option({ 'resizeDuration': 200, 'wrapAround': true })</script>
+    <script>$('#myModal').on('shown.bs.modal', function () { $('#myInput').trigger('focus') })</script>
+    <script>
+        $(document).ready(function () {
+            $('#BtnTk').click(function () {
+                location.reload();
+            });
+        });
+    </script>
+}

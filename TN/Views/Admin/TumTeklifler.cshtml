@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TN.Models.Teklifler>
+
+@{
+    ViewBag.Title = "TumTeklifler";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+
+
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Tum Teklifler</h2>
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Urunler.Aciklama)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Tutar)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Kime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Gorulme)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TeklifTarihi)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TeklifVeren)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Urunler.Aciklama)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tutar)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Kime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Gorulme)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TeklifTarihi)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TeklifVeren)
+                                    </td>
+                                    <td>
+                                      
+                                        @Html.ActionLink("Delete", "TeklifSil", new { id = item.TeklifId })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

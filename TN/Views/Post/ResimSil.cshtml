@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TN.Models.Resimler>
+
+@{
+    ViewBag.Title = "Resim Sil";
+   Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30" style="padding-left:5px">
+            <div class="container">
+                <div class="login-content">
+                    <div class="card-body card-block">
+                        <div class="au-card m-b-30">
+                            <div class="col-lg-8">
+                                <a class="btn btn-xs btn-default" href="@Url.Action("DetayUrun", "Kullanici")">Geri</a>
+                                <hr />
+                                @using (Html.BeginForm("ResimSil", "Post", FormMethod.Post))
+                                {
+                                    <div class="form-group" style="margin-left:10px;">
+                                        <table style="background-color:#b6ff00" border="1">
+                                            <thead style="background-color:#d3f3ab">
+                                                <tr>
+                                                    <th>   <div class="col-md-1"> Seç </div> </th>
+
+                                                    <th><div class="col-md-6"> Resim</div> </th>
+                                                    <th style="width:50px;height:50px;">Image</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="col-md-1"> <input type="checkbox" id="@item.ResimId" name="@item.ResimId" value="@item.ResimId"></div>
+                                                        </td>
+                                                      
+                                                        <td><div class="col-md-6">@item.Resim </div> </td>
+                                                        <td>@item.ImageUrl</td>
+
+                                                    </tr>
+
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-lg-6">
+                                            <input type="submit" value="Seçilenleri Sil" class="btn btn-danger btn-sm Sil" />
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,157 @@
+﻿@using TN.Models
+@model TN.Models.Extended.TumEkranlar
+
+@{
+    ViewBag.Title = "Ana Gorsel";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+<style>
+    .image-preview {
+        width: 300px;
+        min-height: 100px;
+        border: 2px solid #ddd;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #ccc
+    }
+
+    .image-preview__image {
+        display: none;
+        width: 100%
+    }
+</style>
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+<div class="page-content--bgf7">
+
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="col-lg-10">
+                        <div class="login-content" style="background-color:rgba(237, 255, 0, 0.53)">
+                            <table class="table">
+                                <tr>
+                                    <td class="title">Başlık</td>
+                                    <td class="text"> @(((Urunler)Session["urun"]).Baslik)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Kategori</td>
+                                    <td class="text">@Model.Kategorilers.Where(x => x.KategoriId == ((Urunler)Session["urun"]).KategoriId).Select(x => x.KategoriAdi).Single()</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Alt Limit</td>
+                                    <td class="text">@(((Urunler)Session["urun"]).AltLimit) <i class="fa fa-try"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Açıklama</td>
+                                    <td class="text">@(((Urunler)Session["urun"]).Aciklama)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Durumu</td>
+                                    <td class="text">@Model.Durums.Where(z => z.DurumId == (((Urunler)Session["urun"]).DurumId)).Select(x => x.Durumu).Single()</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="col-lg-9">
+                        <div class="login-content">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="form-group">
+                                    <div class="alert alert-danger modal-dialog" role="document">
+                                        <strong>Hata!!</strong>@ViewBag.msg
+                                    </div>
+                                </div>
+                            }
+                            <div class="form-horizontal">
+                                @using (Html.BeginForm("AnaResim", "Post", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="col-md-1"> Seç </div></th>
+                                                    <th><div class="col-md-6"> Resim</div> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{
+                                                    if (TempData["hatali"] is bool h && !h)
+                                                    {
+                                                        var menu = Session["res"] as List<Resimler>;
+                                                        foreach (var item in menu)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="col-md-1"> <input type="checkbox" id="@item.ImageUrl" name="ImageUrl" value="@item.ImageUrl" /></div>
+                                                                </td>
+                                                                <td> <div class="col-md-6"><img src="@item.ImageUrl" alt="" width="200" height="200" /></div></td>
+                                                                <td><div class="col-md-3"></div></td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-lg-6">
+                                            <input type="submit" value="Ana Resim Yap" class="btn btn-danger btn-sm" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

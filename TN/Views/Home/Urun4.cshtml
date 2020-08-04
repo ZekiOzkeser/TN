@@ -1,0 +1,51 @@
+﻿@model  IEnumerable<TN.Models.Urunler>
+
+
+
+    <div id="carousel-example" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @{int i = 0;}
+            @foreach (var item in Model)
+            {
+
+                if (item.Yayın == true)
+                {
+                    i++;
+                    var active = i == 1 ? "active" : "";
+                    <div class="item @active">
+                      
+                            <div class="col-sm-3" style="min-width:275px">
+                                <div class="product">
+                                    <div class="product-img" style="height:250px;">
+                                        <img src="@item.AnaGorsel.Resimler.ImageUrl" alt="">
+                                        <div class="product-label">
+                                            @if (item.UrunOlusturma.Month == DateTime.Today.Date.Month)
+                                            {
+                                                <span class="new">Yeni</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@item.Kategoriler.KategoriAdi</p>
+                                        <h3 class="product-name"><a href="@Url.Action("Detay","Home",new { id=item.UrunId})">@item.Baslik</a></h3>
+
+                                        <div class="product-rating">
+
+                                        </div>
+                                        <div class="product-btns">
+                                            <button onclick="location.href='@Url.Action("Detay","Home",new { id=item.UrunId})'" class="btn btn-default" style="float:left"><i class="fa fa-list"></i> Detay</button>
+                                            ||
+                                            <button class="btn btn-default" id="urun4" style="color:#dddddd"><i class="fa fa-try"></i> Teklif Ver</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+

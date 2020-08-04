@@ -1,0 +1,47 @@
+﻿@using TN.Models
+@model IEnumerable<TN.Models.Kategoriler>
+
+<header class="header-desktop3 d-none d-lg-block">
+    <div class="section__content section__content--p35">
+        <div class="header3-wrap">
+            <div class="header__logo">
+                <a href="@Url.Action("Index","Home")">
+                    <img src="~/Content/img/yazi.png" alt="teklifiNedir">
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="list-unstyled">
+                    <li class="has-sub">
+                        <a href="@Url.Action("Index","Urun")">
+                            <i class="fas fa-barcode"></i>Kategoriler
+                            <span class="bot-line"></span>
+                        </a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li><a href="@Url.Action("Index","Urun")">Tüm Kategoriler</a></li>
+                            @foreach (var item in Model)
+                            {
+                                <li>
+                                    <a href="@Url.Action("KatGore", "Urun",new {id=item.KategoriId })">@item.KategoriAdi</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-times"></i>
+                            <span class="bot-line"></span>Açık Artırmalar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("UrunEkle","Post")"><i class="fa fa-photo"></i>İlan Ver</a>
+                    </li>
+                
+                    <li>
+                        <a href="@Url.Action("Login", "User")"  style="background-color:#ffd800"> Giriş</a>
+                    </li>
+                </ul>
+            </div>
+        
+        </div>
+    </div>
+</header>

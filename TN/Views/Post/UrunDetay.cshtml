@@ -1,0 +1,20 @@
+﻿@model TN.Models.Urunler
+
+
+<div class="row-no-gutters">
+    <dl>
+        <dt>Başlık :  </dt>     
+        <dd>@Html.DisplayFor(m => m.Baslik)</dd>
+        <dt>Kategori :</dt>     
+        <dd>@Html.DisplayFor(m => m.Kategoriler.KategoriAdi)</dd>
+        <dt>Açıklama : </dt>   
+        <dd> @Html.DisplayFor(m => m.Aciklama)</dd>
+        <dt>Altlimit :</dt>      
+        <dd>@Html.DisplayFor(m => m.AltLimit)<i class="fa fa-try"></i></dd>
+        <dt>Durumu :</dt>       
+        <dd>@Html.DisplayFor(m => m.Durum.Durumu)</dd>
+    </dl>
+</div>
+
+
+

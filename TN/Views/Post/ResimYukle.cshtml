@@ -1,0 +1,109 @@
+﻿@using TN.Models
+@model TN.Models.Extended.TumEkranlar
+
+@{
+    ViewBag.Title = "Resim Yükle";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="col-lg-10">
+                        <div class="login-content" style="background-color:rgba(237, 255, 0, 0.53)">
+                            <table class="table">
+                                <tr>
+                                    <td class="title">Başlık</td>
+                                    <td class="text"> @(((Urunler)Session["urun"]).Baslik)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Kategori</td>
+                                    <td class="text">@Model.Kategorilers.Where(x => x.KategoriId == ((Urunler)Session["urun"]).KategoriId).Select(x => x.KategoriAdi).Single()</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Alt Limit</td>
+                                    <td class="text">@(((Urunler)Session["urun"]).AltLimit) <i class="fa fa-try"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Açıklama</td>
+                                    <td class="text">@(((Urunler)Session["urun"]).Aciklama)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Durumu</td>
+                                    <td class="text">@Model.Durums.Where(z => z.DurumId == (((Urunler)Session["urun"]).DurumId)).Select(x => x.Durumu).Single()</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="au-card m-b-30">
+                    <div class="col-lg-9">
+                        <div class="login-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <h5>Resim Yükle</h5>
+                                    <div id="FileBrowse">
+                                        @using (Html.BeginForm("ResimYukle", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <input type="file" id="Files" name="resimDeneme" multiple="multiple" />
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="submit" id="UploadBtn" class="btn btn-xs btn-danger" value=" Yükle" />
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+@if (TempData["msg"] != null) { <script>$.alert({title:'',content:'@TempData["msg"]',});</script> }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

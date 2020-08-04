@@ -1,0 +1,142 @@
+﻿@model TN.Models.Extended.AnaSayfa
+@{
+    ViewBag.Title = "Detay";
+   Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+@Html.Action("HeaderDesktop", "Home")
+@Html.Action("HeaderMobile", "Home")
+
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content--p35">
+            <div class="container-fluid">
+                <div id="aside" class="col-md-2">
+                    @Html.Action("Kategoriler", "Urun")
+
+                    @Html.Action("EnCokBakilanlar", "Urun")
+                </div>
+                <div class="row">
+                    <div class="col-md-4" id="slider">
+                        <div class="row">
+                            <div class="span5" id="carousel-bounding-box">
+                                <div class="carousel slide" id="myCarousel">
+                                    <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a> <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
+                                    <div class="carousel-inner">
+                                        @{ int i = 0;}
+                                        @{ int l = 0;}
+                                        @foreach (var item in Model.Resimlers)
+                                        {
+                                            i++;
+                                            l++;
+                                            var active = i == 1 ? "active" : "";
+                                        <div class="@active item" data-slide-number="@l">
+                                            <a href="@item.ImageUrl" data-lightbox="@item.ImageUrl"><img src="@item.ImageUrl"></a>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="col-12 text-center">  <h3>@Html.DisplayFor(m => m.Urunler.Baslik)</h3></div>
+                        <div class="col-12 text-right"> <h6>@Html.DisplayFor(m => m.Il.Ad) / @Html.DisplayFor(m => m.Ilce.Ad)</h6></div>
+                        <div class="col-12 table-responsive" style="background-color:rgba(232, 251, 67, 0.11)">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="a">İlan Veren</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.User.FirstName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a">İlan No</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.UrunId)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="a">Kategori</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.Kategoriler.KategoriAdi)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a"></td>
+                                        <td class="text-right">@Html.DisplayFor(m => m.Urunler.Aciklama)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="a">Durumu</td>
+                                        <td class="text-right"> @Html.DisplayFor(m => m.Urunler.Durum.Durumu)</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="fc-button-group" style="margin-top:15px">
+                            <div class="col-md-3" style="float:right">
+                                <div class="row">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target=".bd-example-modal-sm" id="BtnUye" style="margin-top:5px">
+                                        <i class="fa fa-try"></i> TeklifVer
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="float:left">
+                                <div class="row">
+                                    <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#exampleModal" id="Btn2" style="margin-top:5px;margin-right:10px"><i class="fa fa-send"></i> Ürün Hakkında Soru Sorabilirsin !!</button>
+                                    <div style="margin-top:5px;margin-top:5px"><a class="btn btn-xs btn-default" href="@Url.Action("Index", "Home")">Geri Dön</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8" style="margin-top:5px">
+                        <div class="row hidden-phone">
+                            @{int g = 0;}
+                            @foreach (var item in Model.Resimlers)
+                            {
+                                int k = g++;
+                            <div class="col-sm-1" style="margin-right:20px">
+                                <a class="thumbnail" id="carousel-selector-@k" style="width:70px;height:70px">  <img src="@item.ImageUrl" style="width:50px;height:50px" />    </a> 
+                                </div>
+                            }
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.Action("Urun1", "Home")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun2", "Home")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun3", "Home")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Action("Urun4", "Home")
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>jQuery(document).ready(function ($) { $('#myCarousel').carousel({ interval: 3000 }); $('#carousel-text').html($('#slide-content-0').html()); $('[id^=carousel-selector-]').click(function () { var id_selector = $(this).attr("id"); var id = id_selector.substr(id_selector.length - 1); var id = parseInt(id); $('#myCarousel').carousel(id); }); $('#myCarousel').on('slid', function (e) { var id = $('.item.active').data('slide-number'); $('#carousel-text').html($('#slide-content-' + id).html()); }); });</script>
+@section Scripts{
+
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+    </script>
+
+}

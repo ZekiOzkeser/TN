@@ -1,0 +1,1144 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9803A933-09E9-48D9-9D79-E69E0FB1D46E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TN</RootNamespace>
+    <AssemblyName>TN</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;__DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Admin\css\font-face.css" />
+    <Content Include="Content\Admin\css\theme.css" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="Content\Admin\images\bg-title-01.jpg" />
+    <Content Include="Content\Admin\images\bg-title-02.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-01.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-02.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-03.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-04.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-05.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-06.jpg" />
+    <Content Include="Content\Admin\images\icon\avatar-big-01.jpg" />
+    <Content Include="Content\Admin\images\icon\logo-blue.png" />
+    <Content Include="Content\Admin\images\icon\logo-mini.png" />
+    <Content Include="Content\Admin\images\icon\logo-white.png" />
+    <Content Include="Content\Admin\images\icon\logo.png" />
+    <Content Include="Content\Admin\images\icon\Untitled-1.jpg" />
+    <Content Include="Content\Admin\js\main.js" />
+    <Content Include="Content\Admin\tn\animsition\animsition.min.css" />
+    <Content Include="Content\Admin\tn\animsition\animsition.min.js" />
+    <Content Include="Content\Admin\tn\bootstrap-4.1\bootstrap.min.css" />
+    <Content Include="Content\Admin\tn\bootstrap-4.1\bootstrap.min.js" />
+    <Content Include="Content\Admin\tn\bootstrap-4.1\popper.min.js" />
+    <Content Include="Content\Admin\tn\bootstrap-progressbar\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="Content\Admin\tn\bootstrap-progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Content\Admin\tn\chartjs\Chart.bundle.min.js" />
+    <Content Include="Content\Admin\tn\circle-progress\circle-progress.js" />
+    <Content Include="Content\Admin\tn\circle-progress\circle-progress.min.js" />
+    <Content Include="Content\Admin\tn\countdown\countdowntime.js" />
+    <Content Include="Content\Admin\tn\countdown\jquery.countdown.min.js" />
+    <Content Include="Content\Admin\tn\countdown\moment-timezone-with-data.min.js" />
+    <Content Include="Content\Admin\tn\countdown\moment-timezone.min.js" />
+    <Content Include="Content\Admin\tn\countdown\moment.min.js" />
+    <Content Include="Content\Admin\tn\counter-up\jquery.counterup.min.js" />
+    <Content Include="Content\Admin\tn\counter-up\jquery.waypoints.min.js" />
+    <Content Include="Content\Admin\tn\counter-up\waypoints.min.js" />
+    <Content Include="Content\Admin\tn\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\Admin\tn\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\css\font-awesome.css" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\css\font-awesome.min.css" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\HELP-US-OUT.txt" />
+    <Content Include="Content\Admin\tn\font-awesome-5\css\fontawesome-all.min.css" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\CHANGELOG.txt" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\CONTRIBUTING.txt" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.css" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.min.css" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.min.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.print.css" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\fullcalendar.print.min.css" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\gcal.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\gcal.min.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\lib\moment.min.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\LICENSE.txt" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale-all.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\af.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-dz.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-kw.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-ly.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-ma.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-sa.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar-tn.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ar.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\be.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\bg.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\bs.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ca.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\cs.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\da.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\de-at.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\de-ch.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\de.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\el.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\en-au.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\en-ca.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\en-gb.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\en-ie.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\en-nz.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\es-do.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\es-us.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\es.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\et.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\eu.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\fa.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\fi.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\fr-ca.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\fr-ch.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\fr.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\gl.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\he.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\hi.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\hr.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\hu.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\id.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\is.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\it.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ja.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ka.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\kk.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ko.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\lb.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\lt.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\lv.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\mk.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ms-my.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ms.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\nb.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\nl-be.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\nl.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\nn.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\pl.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\pt-br.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\pt.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ro.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\ru.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sk.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sl.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sq.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sr-cyrl.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sr.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\sv.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\th.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\tr.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\uk.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\vi.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\zh-cn.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\zh-hk.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\locale\zh-tw.js" />
+    <Content Include="Content\Admin\tn\fullcalendar-3.10.0\README.txt" />
+    <Content Include="Content\Admin\tn\jquery-3.2.1.min.js" />
+    <Content Include="Content\Admin\tn\jquery-ui.min.js" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\css\lightbox.css" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\images\close.png" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\images\loading.gif" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\images\next.png" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\images\prev.png" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox.js" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox.min.js" />
+    <Content Include="Content\Admin\tn\lightbox2\src\css\lightbox.css" />
+    <Content Include="Content\Admin\tn\lightbox2\src\images\close.png" />
+    <Content Include="Content\Admin\tn\lightbox2\src\images\loading.gif" />
+    <Content Include="Content\Admin\tn\lightbox2\src\images\next.png" />
+    <Content Include="Content\Admin\tn\lightbox2\src\images\prev.png" />
+    <Content Include="Content\Admin\tn\lightbox2\src\js\lightbox.js" />
+    <Content Include="Content\Admin\tn\mdi-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\Admin\tn\mdi-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Admin\tn\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Admin\tn\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\Admin\tn\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="Content\Admin\tn\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\Admin\tn\progressbar\progressbar.js" />
+    <Content Include="Content\Admin\tn\progressbar\progressbar.min.js" />
+    <Content Include="Content\Admin\tn\select2\select2.min.css" />
+    <Content Include="Content\Admin\tn\select2\select2.min.js" />
+    <Content Include="Content\Admin\tn\slick\ajax-loader.gif" />
+    <Content Include="Content\Admin\tn\slick\fonts\slick.svg" />
+    <Content Include="Content\Admin\tn\slick\slick-theme.css" />
+    <Content Include="Content\Admin\tn\slick\slick.css" />
+    <Content Include="Content\Admin\tn\slick\slick.js" />
+    <Content Include="Content\Admin\tn\slick\slick.min.js" />
+    <Content Include="Content\Admin\tn\smk-accordion\accordion.css" />
+    <Content Include="Content\Admin\tn\smk-accordion\accordion.js" />
+    <Content Include="Content\Admin\tn\smk-accordion\accordion.min.js" />
+    <Content Include="Content\Admin\tn\sweetalert\sweetalert.min.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.brazil.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.europe.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.france.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.germany.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.min.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.russia.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.sampledata.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.usa.js" />
+    <Content Include="Content\Admin\tn\vector-map\jquery.vmap.world.js" />
+    <Content Include="Content\Admin\tn\vector-map\jqvmap.min.css" />
+    <Content Include="Content\Admin\tn\wow\animate.css" />
+    <Content Include="Content\Admin\tn\wow\wow.min.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Error\bootstrap.min.js" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-brands.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-brands.min.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-regular.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-regular.min.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-solid.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fa-solid.min.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fontawesome-all.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fontawesome-all.min.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fontawesome.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\css\fontawesome.min.css" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\css\material-design-iconic-font.css" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\css\materialdesignicons.min.css" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="Content\Error\css\icons\themify-icons\fonts\themify.svg" />
+    <Content Include="Content\Error\css\icons\themify-icons\ie7\ie7.css" />
+    <Content Include="Content\Error\css\icons\themify-icons\ie7\ie7.js" />
+    <Content Include="Content\Error\css\icons\themify-icons\themify-icons.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons-core.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons-variables.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons-wind.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons-wind.min.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\css\weather-icons.min.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-beaufort.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-day.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-direction.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-misc.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-moon.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-neutral.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-night.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-time.css" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\css\variables-wind-names.css" />
+    <Content Include="Content\Error\css\style.css" />
+    <Content Include="Content\Error\css\style.min.css" />
+    <Content Include="Content\Error\jquery\dist\core.js" />
+    <Content Include="Content\Error\jquery\dist\jquery.min.js" />
+    <Content Include="Content\Error\jquery\dist\jquery.slim.min.js" />
+    <Content Include="Content\Error\popper.min.js" />
+    <Content Include="Content\icon.png" />
+    <Content Include="Content\img\Gorsel-2.png" />
+    <Content Include="Content\img\Gorsel-3.PNG" />
+    <Content Include="Content\img\lg-3.png" />
+    <Content Include="Content\img\lg.png" />
+    <Content Include="Content\img\ll\1.jpg" />
+    <Content Include="Content\img\ll\3.jpg" />
+    <Content Include="Content\img\ll\6.jpg" />
+    <Content Include="Content\img\ll\8.jpg" />
+    <Content Include="Content\img\logo-zek.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\person.png" />
+    <Content Include="Content\img\walpaper-gorsel.png" />
+    <Content Include="Content\img\yazi.png" />
+    <Content Include="Content\jquery-confirm.css" />
+    <Content Include="Content\jquery-confirm.js" />
+    <Content Include="Content\lightbox2-2.11.1\dist\css\lightbox.css" />
+    <Content Include="Content\lightbox2-2.11.1\dist\css\lightbox.min.css" />
+    <Content Include="Content\lightbox2-2.11.1\dist\images\close.png" />
+    <Content Include="Content\lightbox2-2.11.1\dist\images\loading.gif" />
+    <Content Include="Content\lightbox2-2.11.1\dist\images\next.png" />
+    <Content Include="Content\lightbox2-2.11.1\dist\images\prev.png" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox-plus-jquery.js" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox.js" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox.min.js" />
+    <Content Include="Content\lightbox2-2.11.1\examples\index.html" />
+    <Content Include="Content\lightbox2-2.11.1\Gruntfile.js" />
+    <Content Include="Content\lightbox2-2.11.1\src\css\lightbox.css" />
+    <Content Include="Content\lightbox2-2.11.1\src\images\close.png" />
+    <Content Include="Content\lightbox2-2.11.1\src\images\loading.gif" />
+    <Content Include="Content\lightbox2-2.11.1\src\images\next.png" />
+    <Content Include="Content\lightbox2-2.11.1\src\images\prev.png" />
+    <Content Include="Content\lightbox2-2.11.1\src\js\lightbox.js" />
+    <Content Include="Content\package\dist\sweetalert2.all.js" />
+    <Content Include="Content\package\dist\sweetalert2.all.min.js" />
+    <Content Include="Content\package\dist\sweetalert2.css" />
+    <Content Include="Content\package\dist\sweetalert2.js" />
+    <Content Include="Content\package\dist\sweetalert2.min.css" />
+    <Content Include="Content\package\dist\sweetalert2.min.js" />
+    <Content Include="Content\package\src\constants.js" />
+    <Content Include="Content\package\src\globalState.js" />
+    <Content Include="Content\package\src\instanceMethods.js" />
+    <Content Include="Content\package\src\instanceMethods\buttons-handlers.js" />
+    <Content Include="Content\package\src\instanceMethods\close.js" />
+    <Content Include="Content\package\src\instanceMethods\enable-disable-elements.js" />
+    <Content Include="Content\package\src\instanceMethods\getInput.js" />
+    <Content Include="Content\package\src\instanceMethods\hideLoading.js" />
+    <Content Include="Content\package\src\instanceMethods\keydown-handler.js" />
+    <Content Include="Content\package\src\instanceMethods\popup-click-handler.js" />
+    <Content Include="Content\package\src\instanceMethods\progress-steps.js" />
+    <Content Include="Content\package\src\instanceMethods\show-reset-validation-error.js" />
+    <Content Include="Content\package\src\instanceMethods\update.js" />
+    <Content Include="Content\package\src\instanceMethods\_main.js" />
+    <Content Include="Content\package\src\privateMethods.js" />
+    <Content Include="Content\package\src\privateProps.js" />
+    <Content Include="Content\package\src\staticMethods.js" />
+    <Content Include="Content\package\src\staticMethods\argsToParams.js" />
+    <Content Include="Content\package\src\staticMethods\dom.js" />
+    <Content Include="Content\package\src\staticMethods\fire.js" />
+    <Content Include="Content\package\src\staticMethods\mixin.js" />
+    <Content Include="Content\package\src\staticMethods\queue.js" />
+    <Content Include="Content\package\src\staticMethods\showLoading.js" />
+    <Content Include="Content\package\src\staticMethods\timer.js" />
+    <Content Include="Content\package\src\SweetAlert.js" />
+    <Content Include="Content\package\src\sweetalert2.js" />
+    <Content Include="Content\package\src\utils\aria.js" />
+    <Content Include="Content\package\src\utils\classes.js" />
+    <Content Include="Content\package\src\utils\defaultInputValidators.js" />
+    <Content Include="Content\package\src\utils\DismissReason.js" />
+    <Content Include="Content\package\src\utils\dom\animationEndEvent.js" />
+    <Content Include="Content\package\src\utils\dom\domUtils.js" />
+    <Content Include="Content\package\src\utils\dom\getters.js" />
+    <Content Include="Content\package\src\utils\dom\index.js" />
+    <Content Include="Content\package\src\utils\dom\init.js" />
+    <Content Include="Content\package\src\utils\dom\inputUtils.js" />
+    <Content Include="Content\package\src\utils\dom\measureScrollbar.js" />
+    <Content Include="Content\package\src\utils\dom\parseHtmlToContainer.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\render.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderActions.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderCloseButton.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderContainer.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderContent.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderFooter.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderHeader.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderIcon.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderImage.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderInput.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderPopup.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderProgressSteps.js" />
+    <Content Include="Content\package\src\utils\dom\renderers\renderTitle.js" />
+    <Content Include="Content\package\src\utils\ieFix.js" />
+    <Content Include="Content\package\src\utils\iosFix.js" />
+    <Content Include="Content\package\src\utils\isNodeEnv.js" />
+    <Content Include="Content\package\src\utils\openPopup.js" />
+    <Content Include="Content\package\src\utils\params.js" />
+    <Content Include="Content\package\src\utils\scrollbarFix.js" />
+    <Content Include="Content\package\src\utils\setParameters.js" />
+    <Content Include="Content\package\src\utils\Timer.js" />
+    <Content Include="Content\package\src\utils\utils.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site\css\bootstrap.min.css" />
+    <Content Include="Content\Site\css\font-awesome.min.css" />
+    <Content Include="Content\Site\css\slick-theme.css" />
+    <Content Include="Content\Site\css\slick.css" />
+    <Content Include="Content\Site\css\style.css" />
+    <Content Include="Content\Site\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Site\fonts\slick.svg" />
+    <Content Include="Content\Site\img\Anagorsel.png" />
+    <Content Include="Content\Site\img\footer-bg.png" />
+    <Content Include="Content\Site\img\Gorsel-2.png" />
+    <Content Include="Content\Site\img\Gorsel-3.PNG" />
+    <Content Include="Content\Site\img\hotdeal.png" />
+    <Content Include="Content\Site\img\lg-3.png" />
+    <Content Include="Content\Site\img\ll\1.jpg" />
+    <Content Include="Content\Site\img\ll\3.jpg" />
+    <Content Include="Content\Site\img\ll\6.jpg" />
+    <Content Include="Content\Site\img\ll\8.jpg" />
+    <Content Include="Content\Site\img\logo-zek.png" />
+    <Content Include="Content\Site\img\logo.png" />
+    <Content Include="Content\Site\img\product01.png" />
+    <Content Include="Content\Site\img\product02.png" />
+    <Content Include="Content\Site\img\product03.png" />
+    <Content Include="Content\Site\img\product04.png" />
+    <Content Include="Content\Site\img\product05.png" />
+    <Content Include="Content\Site\img\product06.png" />
+    <Content Include="Content\Site\img\product07.png" />
+    <Content Include="Content\Site\img\product08.png" />
+    <Content Include="Content\Site\img\product09.png" />
+    <Content Include="Content\Site\img\shop01.png" />
+    <Content Include="Content\Site\img\shop02.png" />
+    <Content Include="Content\Site\img\shop03.png" />
+    <Content Include="Content\Site\img\tanitim.png" />
+    <Content Include="Content\Site\img\walpaper-gorsel.png" />
+    <Content Include="Content\Site\img\yazi.png" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\buttons.flash.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\buttons.html5.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\buttons.print.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\dataTables.buttons.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\jszip.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\pdfmake.min.js" />
+    <Content Include="Content\Site\jquery-datatable\extensions\export\vfs_fonts.js" />
+    <Content Include="Content\Site\jquery-datatable\jquery.dataTables.js" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\css\dataTables.bootstrap.css" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\favicon.ico" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\sort_asc.png" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\sort_asc_disabled.png" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\sort_both.png" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\sort_desc.png" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\sort_desc_disabled.png" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\js\dataTables.bootstrap.js" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\Site\js\bootstrap.min.js" />
+    <Content Include="Content\Site\js\jquery.min.js" />
+    <Content Include="Content\Site\js\jquery.zoom.min.js" />
+    <Content Include="Content\Site\js\main.js" />
+    <Content Include="Content\Site\js\nouislider.min.js" />
+    <Content Include="Content\Site\js\slick.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-100italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-200italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-600italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-900italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="Content\Admin\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Admin\tn\font-awesome-4.7\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\Admin\tn\font-awesome-5\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Content\Admin\tn\lightbox2\dist\js\lightbox.min.map" />
+    <Content Include="Content\Admin\tn\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Admin\tn\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Admin\tn\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Admin\tn\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\Admin\tn\slick\config.rb" />
+    <Content Include="Content\Admin\tn\slick\fonts\slick.eot" />
+    <Content Include="Content\Admin\tn\slick\fonts\slick.ttf" />
+    <Content Include="Content\Admin\tn\slick\fonts\slick.woff" />
+    <Content Include="Content\Admin\tn\slick\slick-theme.less" />
+    <Content Include="Content\Admin\tn\slick\slick-theme.scss" />
+    <Content Include="Content\Admin\tn\slick\slick.less" />
+    <Content Include="Content\Admin\tn\slick\slick.scss" />
+    <Content Include="Content\Site\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Site\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Site\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Site\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Site\fonts\FontAwesome.otf" />
+    <Content Include="Content\Site\fonts\slick.eot" />
+    <Content Include="Content\Site\fonts\slick.ttf" />
+    <Content Include="Content\Site\fonts\slick.woff" />
+    <Content Include="Content\Site\jquery-datatable\skin\bootstrap\images\Sorting icons.psd" />
+    <Content Include="Content\package\CHANGELOG.md" />
+    <Content Include="Content\package\LICENSE" />
+    <Content Include="Content\package\package.json" />
+    <Content Include="Content\package\README.md" />
+    <Content Include="Content\package\src\scss\_animations.scss" />
+    <Content Include="Content\package\src\scss\_body.scss" />
+    <Content Include="Content\package\src\scss\_core.scss" />
+    <Content Include="Content\package\src\scss\_mixins.scss" />
+    <Content Include="Content\package\src\scss\_polyfills.scss" />
+    <Content Include="Content\package\src\scss\_theming.scss" />
+    <Content Include="Content\package\src\scss\_toasts-animations.scss" />
+    <Content Include="Content\package\src\scss\_toasts-body.scss" />
+    <Content Include="Content\package\src\scss\_toasts.scss" />
+    <Content Include="Content\package\src\sweetalert2.scss" />
+    <Content Include="Content\package\src\variables.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\fa-brands.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\fa-regular.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\fa-solid.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\fontawesome.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_animated.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_bordered-pulled.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_core.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_fixed-width.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_icons.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_larger.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_list.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_mixins.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_rotated-flipped.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_screen-reader.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_stacked.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\less\_variables.less" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\fa-brands.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\fa-regular.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\fa-solid.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\fontawesome.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_core.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_list.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\Error\css\icons\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Content\Error\css\icons\material-design-iconic-font\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Content\Error\css\icons\themify-icons\fonts\themify.eot" />
+    <Content Include="Content\Error\css\icons\themify-icons\fonts\themify.ttf" />
+    <Content Include="Content\Error\css\icons\themify-icons\fonts\themify.woff" />
+    <Content Include="Content\Error\css\icons\themify-icons\themify-icons.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\Error\css\icons\weather-icons\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\Error\css\icons\weather-icons\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Content\Error\css\icons\weather-icons\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-beaufort.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-day.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-direction.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-misc.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-moon-aliases.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-moon.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-neutral.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-night.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-time.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-wind-aliases.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-wind-degrees.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-classes\classes-wind.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-beaufort.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-day.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-direction.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-misc.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-moon.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-neutral.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-night.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-time.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\icon-variables\variables-wind-names.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\mappings\wi-forecast-io.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\mappings\wi-owm.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\mappings\wi-wmo4680.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\mappings\wi-yahoo.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons-classes.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons-core.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons-variables.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons-wind.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons-wind.min.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\less\weather-icons.min.less" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-beaufort.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-day.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-direction.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-misc.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-moon-aliases.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-moon.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-neutral.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-night.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-time.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-wind-aliases.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-wind-degrees.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-classes\classes-wind.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-beaufort.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-day.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-direction.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-misc.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-moon.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-neutral.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-night.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-time.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\icon-variables\variables-wind-names.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\mappings\wi-forecast-io.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\mappings\wi-owm.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\mappings\wi-wmo4680.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\mappings\wi-yahoo.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons-classes.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons-core.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons-variables.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons-wind.min.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons-wind.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons.min.scss" />
+    <Content Include="Content\Error\css\icons\weather-icons\sass\weather-icons.scss" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Content\lightbox2-2.11.1\.editorconfig" />
+    <Content Include="Content\lightbox2-2.11.1\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Content\lightbox2-2.11.1\.github\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Content\lightbox2-2.11.1\.gitignore" />
+    <Content Include="Content\lightbox2-2.11.1\.jscsrc" />
+    <Content Include="Content\lightbox2-2.11.1\.jshintrc" />
+    <Content Include="Content\lightbox2-2.11.1\bower.json" />
+    <Content Include="Content\lightbox2-2.11.1\DEPLOY.md" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Content\lightbox2-2.11.1\dist\js\lightbox.min.map" />
+    <Content Include="Content\lightbox2-2.11.1\LICENSE" />
+    <Content Include="Content\lightbox2-2.11.1\package.json" />
+    <Content Include="Content\lightbox2-2.11.1\README.md" />
+    <Content Include="Content\lightbox2-2.11.1\ROADMAP.md" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\jquery-confirm.less" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Properties\PublishProfiles\zw.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.zoom.js" />
+    <Content Include="Scripts\jquery.zoom.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\tklf.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Kullanici\Index.cshtml" />
+    <Content Include="Views\Kullanici\Urunlerim.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="BLL\GenericRepository.cs" />
+    <Compile Include="BLL\IRepository.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IlanController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
+    <Compile Include="Controllers\MesajController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\SartlarKosullarController.cs" />
+    <Compile Include="Controllers\TeklifController.cs" />
+    <Compile Include="Controllers\UrunController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Crypto.cs" />
+    <Compile Include="DAL\TeklifContext.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AltKategoriler.cs" />
+    <Compile Include="Models\AnaGorsel.cs" />
+    <Compile Include="Models\Durum.cs" />
+    <Compile Include="Models\Extended\AnaSayfa.cs" />
+    <Compile Include="Models\Extended\MesajGrubu.cs" />
+    <Compile Include="Models\Extended\Mesajlar.cs" />
+    <Compile Include="Models\Extended\ResetPasswordModel.cs" />
+    <Compile Include="Models\Extended\TeklifGrubu.cs" />
+    <Compile Include="Models\Extended\TumEkranlar.cs" />
+    <Compile Include="Models\Extended\UrunKullanici.cs" />
+    <Compile Include="Models\Extended\User1.cs" />
+    <Compile Include="Models\Extended\UserLogin.cs" />
+    <Compile Include="Models\Extended\ViewModel.cs" />
+    <Compile Include="Models\Il.cs" />
+    <Compile Include="Models\Ilce.cs" />
+    <Compile Include="Models\Iletisim.cs" />
+    <Compile Include="Models\Kategoriler.cs" />
+    <Compile Include="Models\Mesaj.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\Resimler.cs" />
+    <Compile Include="Models\Teklifler.cs" />
+    <Compile Include="Models\Urunler.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TNMobil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\Post\UrunEkle.cshtml" />
+    <Content Include="Views\Home\AcikArtirma.cshtml" />
+    <Content Include="Views\User\VerifyAccount.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
+    <Content Include="Views\Kullanici\Bilgilerim.cshtml" />
+    <Content Include="Views\Kullanici\BilgiDuzenle.cshtml" />
+    <Content Include="Views\Post\ResimYukle.cshtml" />
+    <Content Include="Views\Post\UrunDetay.cshtml" />
+    <Content Include="Views\Post\ResimSil.cshtml" />
+    <Content Include="Views\Post\UrunDuzenle.cshtml" />
+    <Content Include="Views\Home\Urun1.cshtml" />
+    <Content Include="Views\Home\Urun2.cshtml" />
+    <Content Include="Views\Home\Urun3.cshtml" />
+    <Content Include="Views\Home\Urun4.cshtml" />
+    <Content Include="Views\Urun\Index.cshtml" />
+    <Content Include="Views\Urun\KatGore.cshtml" />
+    <Content Include="Views\Urun\Kategoriler.cshtml" />
+    <Content Include="Views\Urun\EnCokBakilanlar.cshtml" />
+    <Content Include="Views\Post\AnaResim.cshtml" />
+    <Content Include="Views\Shared\_LayoutKul.cshtml" />
+    <Content Include="Views\Kullanici\HeaderDesktop.cshtml" />
+    <Content Include="Views\Kullanici\HeaderMobile.cshtml" />
+    <Content Include="Views\Shared\Breadcrumb.cshtml" />
+    <Content Include="Views\Shared\istatistikler.cshtml" />
+    <Content Include="Views\Kullanici\Mesajlarim.cshtml" />
+    <Content Include="Views\Kullanici\KatGore.cshtml" />
+    <Content Include="Views\Kullanici\EnCokBakilanlar.cshtml" />
+    <Content Include="Views\Kullanici\Kategoriler.cshtml" />
+    <Content Include="Views\Kullanici\DetayUrun.cshtml" />
+    <Content Include="Views\Kullanici\UrunIndex.cshtml" />
+    <Content Include="Views\Kullanici\Aktif.cshtml" />
+    <Content Include="Views\Kullanici\Pasif.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
+    <Content Include="Views\User\Iletisim.cshtml" />
+    <Content Include="Views\Kullanici\IletisimDuzenle.cshtml" />
+    <Content Include="Views\Home\Detay.cshtml" />
+    <Content Include="Views\Urun\UrunDetay.cshtml" />
+    <Content Include="Views\Mesaj\Chat.cshtml" />
+    <Content Include="Views\Shared\IlanAraPartial.cshtml" />
+    <Content Include="Views\Urun\Urun1.cshtml" />
+    <Content Include="Views\Urun\Urun2.cshtml" />
+    <Content Include="Views\Urun\Urun3.cshtml" />
+    <Content Include="Views\Urun\Urun4.cshtml" />
+    <Content Include="Views\Error\PageError.cshtml" />
+    <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Teklif\TeklifOku.cshtml" />
+    <Content Include="Views\Mesaj\MsjOku.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Kullanicilar.cshtml" />
+    <Content Include="Views\Admin\TumUrunler.cshtml" />
+    <Content Include="Views\Admin\KategoriEkle.cshtml" />
+    <Content Include="Views\Admin\Kategoriler.cshtml" />
+    <Content Include="Views\Admin\KatDuz.cshtml" />
+    <Content Include="Views\Home\HeaderDesktop.cshtml" />
+    <Content Include="Views\Home\HeaderMobile.cshtml" />
+    <Content Include="Views\Mesaj\MsjYaz.cshtml" />
+    <Content Include="Views\Teklif\TeklifVer.cshtml" />
+    <Content Include="Views\Admin\Desktop.cshtml" />
+    <Content Include="Views\Admin\Mobile.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Kullanici\AltMenu.cshtml" />
+    <Content Include="Views\Post\Kontrol.cshtml" />
+    <Content Include="Views\Post\ResimDuzenle.cshtml" />
+    <Content Include="Views\Post\AnaResimDuz.cshtml" />
+    <Content Include="Views\Post\Kontrol2.cshtml" />
+    <Content Include="Views\Admin\Aktif.cshtml" />
+    <Content Include="Views\Admin\Pasif.cshtml" />
+    <Content Include="Views\Admin\DurumEkle.cshtml" />
+    <Content Include="Views\Admin\Durum.cshtml" />
+    <Content Include="Views\Admin\DurumDuz.cshtml" />
+    <Content Include="Views\Shared\IlanAra2.cshtml" />
+    <Content Include="Views\Admin\TumMesajlar.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Mesaj\MesajYaz.cshtml" />
+    <Content Include="Views\Admin\TumTeklifler.cshtml" />
+    <Content Include="Views\Kullanici\Tekliflerim.cshtml" />
+    <Content Include="Views\Kullanici\AcikArtirma.cshtml" />
+    <Content Include="Views\Shared\Sozlesme.cshtml" />
+    <Content Include="Views\SartlarKosullar\Index.cshtml" />
+    <Content Include="Views\SartlarKosullar\GizlilikPolitikamiz.cshtml" />
+    <Content Include="Views\SartlarKosullar\Kurallar.cshtml" />
+    <Content Include="Views\Ilan\Ilan.cshtml" />
+    <Content Include="Views\Ilan\AramaSonuc.cshtml" />
+    <Content Include="Views\Shared\Breadcrumb2.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\package\sweetalert2.d.ts" />
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50570</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60580/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

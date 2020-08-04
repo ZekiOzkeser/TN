@@ -1,0 +1,105 @@
+﻿@model IEnumerable<TN.Models.Kategoriler>
+
+@{
+    ViewBag.Title = "Kategoriler";
+ Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("Mobile", "Admin")
+
+@Html.Action("Desktop", "Admin")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="table-data__tool">
+
+                            <div class="table-data__tool-right">
+                                <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="@Url.Action("KategoriEkle","Admin")">
+                                    <i class="zmdi zmdi-plus"></i>Kategori Ekle
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.KategoriAdi)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="tr-shadow">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.KategoriAdi)
+                                            </td>
+                                            <td>
+                                                <a href=" @Url.Action("KatDuz", "Admin", new { id = item.KategoriId })">Düzenle </a> |
+
+                                                <button class="item Sil" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" data-target="#exampleModal" name="@item.KategoriId ">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(".Sil").click(function () {
+            var ID = $(this).attr('name');
+            var delTR = $(this).closest("tr");
+            $.confirm({
+                title: 'Silme İşlemi !',
+                content: 'Silmek istediğinizden emin misiniz ?',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Sil',
+                        btnClass: 'btn-red',
+                        action: function () {
+                            $.ajax({
+                                url: '/Admin/KatSil/' + ID,
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function (result) {
+                                    if (result == "1") {
+                                        delTR.fadeOut(500, function () {
+                                            delTR.remove();
+                                        });
+
+                                    }
+                                    else {
+                                        alert("İşlem sırasında hata oluştu");
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    Vazgeç: function () {
+                        $.alert('İşlemden vazgeçildi..');
+                    }
+                }
+            });
+        });
+    </script>
+}

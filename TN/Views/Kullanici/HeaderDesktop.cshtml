@@ -1,0 +1,197 @@
+﻿@using TN.Models
+@model TN.Models.Extended.ViewModel
+
+<header class="header-desktop3 d-none d-lg-block">
+    <div class="section__content section__content--p35">
+        <div class="header3-wrap">
+            <div class="header__logo">
+                <a href="@Url.Action("UrunIndex","Kullanici")">
+                    <img src="~/Content/img/yazi.png" alt="teklifiNedir">
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="list-unstyled">
+                    <li class="has-sub">
+                        <a href="@Url.Action("UrunIndex","Kullanici")">
+                            <i class="fas fa-barcode"></i>Kategoriler
+                            <span class="bot-line"></span>
+                        </a>
+                        <ul class="header3-sub-list list-unstyled">
+                            <li><a href="@Url.Action("UrunIndex","Kullanici")">Tüm Kategoriler</a></li>
+                            @foreach (var item in Model.Kategorilers)
+                            {
+                                <li>
+                                    <a href="@Url.Action("KatGore", "Kullanici",new {id=item.KategoriId })">@item.KategoriAdi</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("AcikArtirma","Kullanici")">
+                            <i class="fas fa-times"></i>
+                            <span class="bot-line"></span>Açık Artırmalar
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="#">
+                            <i class="fas fa-pie-chart"></i>
+                            <span class="bot-line"></span>Ürünlerim
+                        </a>
+                        <ul class="header3-sub-list list-unstyled">
+
+                            <li>
+                                <a href="@Url.Action("Aktif","Kullanici")">Aktif Ürünler</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Pasif","Kullanici")">Pasif Ürünler</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+
+
+
+            <div class="header__tool">
+
+                <a href="@Url.Action("UrunEkle","Post")">
+                    <div class="noti__item">
+                        <i class="zmdi zmdi-camera-monochrome-photos"></i>
+                    </div>
+                </a>
+
+                <div class="noti__item js-item-menu">
+                    <i class="zmdi zmdi-email"></i>
+
+                    <span class="quantity">@Session["msjsay"]</span>
+
+
+                    <div class="mess-dropdown js-dropdown">
+                        <div class="mess__title">
+                            <p>@Session["msjsay"] yeni mesaj</p>
+                        </div>
+
+                        @foreach (var i in Model.Mesajs)
+                        {
+                            <div class="mess__item">
+                                <div class="image img-cir img-40">
+                                    <img src="~/Content/img/logo-zek.png" alt="">
+                                </div>
+                                <div class="content">
+                                    <a href="@Url.Action("MsjOku", "Mesaj", new { id = i.MesajId })">
+                                        <h6>@Model.Users.Where(x => x.UserID == i.Gonderen).Single().FullName</h6>
+                                        <p>@i.MesajIcerik</p>
+                                        <span class="time">@i.MesajTarihi</span>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="mess__footer">
+                            <a href="@Url.Action("Mesajlarim","Kullanici")">Tüm Mesajlar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="noti__item js-item-menu">
+                    <i class="zmdi zmdi-comment-more"></i>
+
+                    <span class="quantity">@Session["teksay"]</span>
+
+
+                    <div class="mess-dropdown js-dropdown">
+                        <div class="mess__title">
+                            <p>@Session["teksay"] yeni teklif</p>
+                        </div>
+                        @foreach (var item in Model.Tekliflers)
+                        {
+                            <div class="mess__item">
+                                <div class="image img-cir img-40">
+                                    <img src="@item.Urunler.AnaGorsel.Resimler.ImageUrl" alt="">
+                                </div>
+                                <div class="content">
+                                    <a href="@Url.Action("TeklifOku", "Teklif", new { id = item.TeklifId })">
+                                        <h6>@Model.Users.Where(x => x.UserID == @item.TeklifVeren).Single().FullName</h6>
+                                        <p>@item.Tutar<i class="fa fa-try" style="font-size:small"></i></p>
+                                        <span class="time">@item.TeklifTarihi</span>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="mess__footer">
+                            <a href="@Url.Action("Tekliflerim","Kullanici")">Tüm Teklifler</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="account-wrap">
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="~/Content/img/logo.png" alt="zZEk">
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#">@(((User)Session["user"]).FirstName)</a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="~/Content/img/logo.png" alt="zZEk" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#">@(((User)Session["user"]).FullName)</a>
+                                    </h5>
+                                    <span class="email">@(((User)Session["user"]).EmailID)</span>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="@Url.Action("Bilgilerim","Kullanici")">
+                                        <i class="zmdi zmdi-account"></i>Bilgilerim
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="@Url.Action("Index","Kullanici")">
+                                        <i class="zmdi zmdi-settings"></i>Ayarlar
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="@Url.Action("Mesajlarim","Kullanici")">
+                                        <i class="zmdi zmdi-email"></i>Mesajlar
+                                    </a>
+                                </div>
+                                
+                                <div class="account-dropdown__item">
+                                    <a href="@Url.Action("Tekliflerim","Kullanici")">
+                                        <i class="zmdi zmdi-comment-more"></i>Teklifler
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__footer" style="color:#b70202">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+
+                                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="zmdi zmdi-power"></i>Çıkış
+                                        </a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</header>

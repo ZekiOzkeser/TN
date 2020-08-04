@@ -1,0 +1,175 @@
+﻿@model TN.Models.Iletisim
+
+@{
+    ViewBag.Title = "Iletisim";
+  Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap">
+                <div class="login-form">
+                    <div class="login-content">
+                        <div class="login-logo" style="margin-bottom:0px;">
+                            <a href="#">
+                                <img src="~/Content/img/logo-zek.png" alt="teklifinedir" height="100px" width="50px" style="margin-bottom:0px;">
+                            </a>
+                        </div>
+                        <div class="login-form">
+                            <div class="card-body card-block">
+                                @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                                {
+                                    if (ViewBag.Message != null)
+                                    {
+                                        <div class="alert alert-success modal-dialog" role="document">
+                                            <strong>Mükemmel!</strong>@ViewBag.Message
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            <hr />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                            <div class="row form-group">
+                                                @Html.LabelFor(m => m.Tel, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(m => m.Tel, new { htmlAttributes = new { @class = "form-control", @maxlength = "10" } })
+                                                    @Html.ValidationMessageFor(m => m.Tel, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                @Html.LabelFor(m => m.Adres, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.TextAreaFor(m => m.Adres, new { @class = "form-control", @rows = 3 })
+                                                    @Html.ValidationMessageFor(m => m.Adres, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.Label("İl", new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    <select class="form-control-sm form-control" name="il" id="il"></select>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.Label("İlçe", new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    <select class="form-control-sm form-control" name="ilce" id="ilce" disabled>
+                                                        <option>Bir İl Seçiniz</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Kaydet</button>
+
+                                        if (ViewBag.Message != null)
+                                        {
+                                            <div class="form-group">
+                                                <div class="alert alert-danger modal-dialog" role="document">
+                                                    <strong>Hata!!</strong>@ViewBag.Message
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+        @if (TempData["msg"] != null)
+    {
+        <script>
+        $.alert({
+            title: '',
+            content: '@TempData["msg"]',
+        });
+
+        </script>
+    }
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @*<script>
+        $(function () {
+            $.ajaxSetup({
+                type: "post",
+                url: "/User/IlIlce",
+                dataType: "json"
+            });
+            $.extend({
+                ilGetir: function () {
+                    $.ajax({
+                        data: { "tip": "ilGetir" },
+                        success: function (sonuc) {
+                            if (sonuc.ok) {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#il").append(optionhtml);
+                                });
+                                $("#il").get().selectedIndex
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#il").append(optionhtml);
+                                });
+
+                            }
+                        }
+                    });
+                },
+                ilceGetir: function (ilId) {
+
+                    $.ajax({
+                        data: { "ilId": ilId, "tip": "ilceGetir" },
+                        success: function (sonuc) {
+                            $("#ilce option").remove();
+                            if (sonuc.ok) {
+                                $("#ilce").prop("disabled", false);
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#ilce").append(optionhtml);
+                                });
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#ilce").append(optionhtml);
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            $.ilGetir();
+            $("#il").on("change", function () {
+                var ilId = $(this).val();
+                $.ilceGetir(ilId);
+            });
+        });
+    </script>*@
+
+
+
+
+
+
+}
+

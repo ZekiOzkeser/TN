@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TN.Models.Urunler>
+@{
+
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+
+@Html.Action("HeaderDesktop", "Home")
+@Html.Action("HeaderMobile", "Home")
+
+    @Html.Partial("Breadcrumb2")
+
+<div class="container" style="padding-top:40px">
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-6" style="min-width:275px">
+                <div class="zk">
+                    <div class="" style="height:250px;">
+                        <img src="@item.AnaGorsel.Resimler.ImageUrl" alt="">
+                    </div>
+                    <div class="zk-body">
+                        <h3>@item.Kategoriler.KategoriAdi</h3><br><h5>@item.Baslik</h5>
+                        <a href="@Url.Action("Detay","Home",new { id=item.UrunId})" class="cta-btn">Hemen Teklif Ver <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="container" style="padding-top:40px" id="hm">
+    <div class="row">
+        <div class="col-md-3" >
+            @Html.Action("Urun1")
+        </div>
+
+        <div class="col-md-3">
+            @Html.Action("Urun2")
+        </div>
+        <div class="col-md-3">
+            @Html.Action("Urun3")
+        </div>
+        <div class="col-md-3">
+            @Html.Action("Urun4")
+        </div>
+    </div>
+
+</div>
+
+
+
+@Html.Partial("AcikArtirma")
+
+@Html.Action("Footer")
+
+
+@section scripts{
+@if (TempData["msg"] != null) { <script>$.alert({title:'',content:'@TempData["msg"]',});</script> }
+
+
+}

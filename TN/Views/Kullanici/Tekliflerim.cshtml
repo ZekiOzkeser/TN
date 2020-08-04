@@ -1,0 +1,99 @@
+﻿@using TN.Models
+@model TN.Models.Extended.ViewModel
+
+@{
+    ViewBag.Title = "Tekliflerim";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 mr-auto ml-auto">
+                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                            <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
+                                <div class="bg-overlay bg-overlay--blue"></div>
+                                <h3>
+                                    <i class="fa fa-try"></i>Teklifler
+                                </h3>
+                            </div>
+                            <div class="au-inbox-wrap">
+                                <div class="au-message">
+                                    <div class="au-message__noti">
+                                        <p>
+                                            Sizin
+                                            <span>@Model.OkunmayanSayisi</span>
+                                            yeni teklifiniz var
+                                        </p>
+                                    </div>
+                                    <div class="au-message-list">
+                                        @foreach (var urunTeklifi in Model.GelenTeklifler)
+                                        {
+                                            var teklif = urunTeklifi.Value.Teklifler.OrderBy(m => m.TeklifTarihi).LastOrDefault();
+
+                                            <div class="au-message__item unread" @if (teklif.Gorulme == 0 && teklif.TeklifVeren != Model.UserID) { Write("style=background-color:rgba(124,195,8,0.41)"); } id="@teklif.TeklifId">
+                                                <div class="au-message__item-inner">
+                                                    <div class="au-message__item-text">
+                                                        @if (urunTeklifi.Value.IlkGonderen == Model.UserID)
+                                                        {
+                                                            <div>Gönderilen:</div>
+                                                        }
+                                                        <div class="avatar-wrap ">
+                                                            <div class="avatar">
+                                                                <img src="@Session["urngorsl2"]" alt="TN">
+                                                            </div>
+                                                        </div>
+                                                        <div class="text">
+                                                            <div style="margin:5px">
+                                                                ÜrünId: @teklif.UrunId
+                                                            </div>
+                                                            <a href="@Url.Action("TeklifOku", "Teklif", new { id = teklif.TeklifId })">
+                                                                <h5 class="name" id="@teklif.TeklifVeren">
+                                                                    @if (teklif.TeklifVeren == Model.UserID)
+                                                                    {
+                                                                        @Model.Users.Where(u => u.UserID == teklif.Kime).SingleOrDefault().FullName
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Model.Users.Where(u => u.UserID == teklif.TeklifVeren).SingleOrDefault().FullName
+                                                                    }
+                                                                </h5>
+                                                                <input type="text" class="hidden" id="UrunId" value="@teklif.UrunId" />
+                                                                <input type="text" class="hidden" id="TeklifVeren" value="@teklif.TeklifVeren" />
+                                                                <p>@teklif.Tutar <i class="fa fa-try"></i></p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="au-message__item-time">
+                                                        <span>@teklif.TeklifTarihi</span>
+                                                    </div>
+                                                    <button class="item SilTekliflerim" data-toggle="tooltip" data-placement="top" title="Sil" data-original-title="Delete" data-target="#exampleModal" name="@teklif.UrunId">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Action("AltMenu")
+
+
+

@@ -1,0 +1,132 @@
+﻿@model TN.Models.Extended.User1
+@{
+    ViewBag.Title = "Üye Ol";
+   Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap">
+                <div class="login-form">
+                    <div class="login-content">
+                        <div class="login-logo" style="margin-bottom:0px;">
+                            <a href="@Url.Action("Index","Home")">
+                                <img src="~/Content/img/logo-zek.png" alt="teklifinedir" height="100px" width="50px" style="margin-bottom:0px;">
+                            </a>
+                        </div>
+                        <div class="login-form">
+                            <div class="card-body card-block">
+                                @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                                {
+                                    if (ViewBag.Message != null)
+                                    {
+                                        <div class="alert alert-success modal-dialog" role="document">
+                                            <strong>Mükemmel!</strong>@ViewBag.Message
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            <hr />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                                                    @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @minlength = "6", @maxlength = "12" } })
+                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                           
+                                            <div class="form-group">
+                                                <div class="login-checkbox" style="text-align:center">
+                                                    @Html.CheckBoxFor(m => m.Sozlesme, new { htmlAttributes = new { @class = "form-control col-md-2" } })
+                                                    <label style="font-size:smaller"><a href="@Url.Action("Index","SartlarKosullar")" rel="nofollow" target="_blank">Üyelik Sözleşmesi ve Gizlilik Politikası'nı kabul ediyorum.</a></label>
+                                                    @Html.ValidationMessageFor(model => model.Sozlesme, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Giriş</button>
+
+                                        if (ViewBag.Message != null)
+                                        {
+                                            <div class="form-group">
+                                                <div class="alert alert-danger modal-dialog" role="document">
+                                                    <strong>Hata!!</strong>@ViewBag.Message
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                                <div class="register-link">
+                                    <p>
+                                        Hesabınız var mı?
+                                        <a href="@Url.Action("Login","User")">Giriş</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+  
+
+    <script>var defaultRangeValidator = $.validator.methods.range; $.validator.methods.range = function (value, element, param) { if (element.type === 'checkbox') { return element.checked; } else { return defaultRangeValidator.call(this, value, element, param); } }</script>
+
+
+
+
+}
+

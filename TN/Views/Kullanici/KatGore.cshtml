@@ -1,0 +1,113 @@
+﻿
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<TN.Models.Urunler>
+@{
+    ViewBag.Title = "Kategori";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    @Html.Partial("Breadcrumb")
+    <div class="main-content">
+        <div class="section__content--p35">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="aside" class="col-md-3">
+                        @Html.Action("Kategoriler")
+                        @Html.Action("EnCokBakilanlar")
+                    </div>
+                    <div id="store" class="col-md-6">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-4 col-xs-6" style="min-width:275px">
+                                    <div class="product">
+                                        <div class="product-img" style="height:250px;">
+                                            <img src="@item.AnaGorsel.Resimler.ImageUrl" alt="">
+                                            <div class="product-label">
+                                                @if (item.UrunOlusturma.Month == DateTime.Today.Date.Month)
+                                                {
+                                                    <span class="new">Yeni</span>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category">@item.Kategoriler.KategoriAdi</p>
+                                            <h3 class="product-name"><a href="#">@item.Baslik</a></h3>
+                                            <div class="product-rating">
+                                            </div>
+                                            <div class="product-btns">
+                                                <button onclick="location.href='@Url.Action("DetayUrun","Kullanici",new { id=item.UrunId})'" class="btn btn-default" style="float:left"><i class="fa fa-list"></i> Detay</button>
+                                                ||
+                                                <button class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-whatever="@item.UrunId"><i class="fa fa-try"></i> Teklif Ver</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="store-filter clearfix" style="float:right">
+                            <nav class="blog-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        @Html.PagedListPager(Model, Page => Url.Action("KatGore", new { Page }), PagedListRenderOptions.Classic)
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="exampleModal">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Teklifin Nedir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-warning modal-dialog" role="document">
+                        <strong>!!</strong>@ViewBag.Message
+                    </div>
+                }
+            </div>
+            <div class="modal-title hidden">
+                <input id="UrunId" name="UrunId" style="border-bottom-color:black" />
+            </div>
+            <div class="modal-body">
+                <label for="recipient-name" class="col-form-label">Teklifiniz :</label>
+                <input id="Tutar" name="Tutar" style="border-bottom-color:black" /><i class="fa fa-try"></i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-danger" onclick="TeklifKatGore()" id="Btn3"><i class="fa fa-try"></i> Teklif Ver</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Html.Action("AltMenu")
+
+
+@section scripts{
+    @if (TempData["msg"] != null)
+    {
+        <script>$.alert({title:'',content:'@TempData["msg"]',});</script>
+}
+    <script>$('#exampleModal').on('show.bs.modal', function (event) { var button = $(event.relatedTarget) var recipient = button.data('whatever') var modal = $(this) modal.find('.modal-title input').val(recipient) })</script>
+    <script type="text/javascript">$(document).ready(function () { $('#Btn3').click(function () { location.reload(); }); });</script>
+}

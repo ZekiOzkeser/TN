@@ -1,0 +1,158 @@
+﻿@using TN.Models
+@model TN.Models.Extended.Mesajlar
+
+
+@{
+    ViewBag.Title = "Teklifler";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 mr-auto ml-auto">
+                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                            <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
+                                <div class="bg-overlay bg-overlay--blue"></div>
+                                <h3>
+                                    <i class="fa fa-try"></i>Teklifler
+                                </h3>
+                                <button class="au-btn-plus DeleteTekliflerim" data-toggle="tooltip" data-placement="top" title="Sil" data-original-title="Delete" name="teklf" data-target="#exampleModal" >
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                            <div class="au-inbox-wrap">
+                                <div class="au-chat">
+                                    <div class="au-chat__title">
+                                        <div class="au-chat-info">
+                                            <div class="avatar-wrap">
+                                                <div class="avatar avatar--small">
+                                                    <img src="@Model.Urunler.AnaGorsel.Resimler.ImageUrl" alt="">
+                                                </div>
+                                            </div>
+                                            <span class="nick">
+                                                <a href="#">@Model.Kime.FullName </a>
+                                                <input type="text" class="hidden" id="TeklifVeren2" value="@Model.Kime.UserID" />
+                                                <input type="text" class="hidden" id="UrunId" value="@Model.Urunler.UrunId" />
+                                            </span>                         
+                                            <button type="button" class="btn btn-sm" data-toggle="modal" title="Mesaj Gönder" data-target="#exampleModal" data-whatever="@Model.Urunler.UserID" style="float:right"><i class="zmdi zmdi-email"></i></button>
+                                        </div>
+
+                                    </div>
+                                    <div class="au-chat__content">
+
+                                        @foreach (var item in Model.TeklifIcerik)
+                                        {
+                                            if (item.TeklifVeren != ((User)Session["user"]).UserID)
+                                            {
+                                                <div class="recei-mess-wrap">
+                                                    <span class="mess-time">@item.TeklifTarihi</span>
+                                                    <div class="recei-mess__inner">
+                                                        <div class="avatar avatar--tiny">
+                                                            <img src="~/Content/img/logo.png" alt="TN">
+                                                        </div>
+                                                        <div class="recei-mess-list">
+                                                            <div class="recei-mess">@item.Tutar <i class="fa fa-try"></i></div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="item SilTeklif" data-toggle="tooltip" data-placement="top" title="Sil" data-original-title="Delete" data-target="#exampleModal" name="@item.TeklifId">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                                Session["sonteklif"] = item.TeklifVeren;
+                                            }
+                                            else
+                                            {
+                                                <div class="send-mess-wrap">
+                                                    <span class="mess-time">@item.TeklifTarihi</span>
+                                                    <div class="send-mess__inner">
+                                                        <div class="send-mess-list">
+                                                            <div class="send-mess">@item.Tutar <i class="fa fa-try"></i></div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="item SilTeklif" data-toggle="tooltip" data-placement="top" title="Sil" data-original-title="Delete" data-target="#exampleModal" name="@item.TeklifId">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    @Html.Partial("TeklifVer")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Yeni Mesaj</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Kime :</label>
+                        <label class="col-form-label">@Model.Urunler.User.FullName</label>
+                        <input id="Kime2" value="@Session["sonteklif"]" class="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Ürün :</label>
+                        <label class="col-form-label">@Model.Urunler.Baslik</label>
+                        <input id="UrunId" class="hidden" value="@Model.Urunler.UrunId" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Mesajınız:</label>
+                        <textarea class="form-control" id="MesajIcerik" name="MesajIcerik" required></textarea>
+                        <label id="errMsj2" style="display:none;color:red;font-weight:bold">Mesaj içeriği boş..</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-warning" onclick="return MesajTeklif()" id="BtnCvpMsj">Mesaj Yolla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @if (TempData["msg"] != null)
+    {
+        <script>
+
+            $.alert({
+                title: '',
+                content: '@TempData["msg"]',
+            });
+
+        </script>
+    }
+    <script>
+        $(document).ready(function () {
+            $('#BtnCvpMsj').click(function () {
+                location.reload();
+            });
+        });
+    </script>
+
+
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+
+}

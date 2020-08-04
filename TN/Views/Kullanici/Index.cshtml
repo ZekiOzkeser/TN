@@ -1,0 +1,53 @@
+﻿@using TN.Models
+@{
+     Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+
+
+<div class="page-content--bgf7">
+    @Html.Partial("Breadcrumb")
+
+    <section class="welcome p-t-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title-4">
+                        Hoşgeldin
+                        <span>@(((User)Session["user"]).FirstName)</span>
+                    </h1>
+                    <hr class="line-seprate">
+                </div>
+            </div>
+        </div>
+    </section>
+    @Html.Partial("istatistikler")
+    <div class="container">
+        <section class="p-t-20">
+            @Html.Action("Urunlerim", "Kullanici")
+        </section>
+    </div>
+</div>
+
+@Html.Action("AltMenu")
+
+@section Scripts{
+    @if (TempData["msg"] != null)
+    {
+        <script>
+        $.alert({
+            title: '',
+            content: '@TempData["msg"]',
+        });
+
+        </script>
+    }
+
+
+
+}

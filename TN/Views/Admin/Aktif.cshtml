@@ -1,0 +1,93 @@
+﻿@model  IEnumerable<TN.Models.Urunler>
+
+@{
+    ViewBag.Title = "Yayında";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+@Html.Action("Mobile", "Admin")
+@Html.Action("Desktop", "Admin")
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-5 m-b-35">Yayında Olanlar</h3>
+                        <div class="table-data__tool">
+                        </div>
+                        <div class="table-responsive table-responsive-data2">
+                            <table class="table table-data2">
+                                <thead>
+                                    <tr>
+                                        <th>İlan No</th>
+                                        <th>Kullanıcı</th>
+                                        <th>Başlık</th>
+                                        <th>Yayın Durumu</th>
+                                        <th>Kategori</th>
+                                        <th>Durum</th>
+                                        <th>İlan Başlangıç</th>
+                                        <th>İlan Bitiş</th>
+                                        <th>Alt Limit</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="tr-shadow">
+                                            <td>@item.UrunId</td>
+                                            <td>@item.UserID</td>
+                                            <td>
+                                                @item.Baslik
+                                            </td>
+                                            <td>
+                                                @item.Yayın
+                                            </td>
+                                            <td>@item.Kategoriler.KategoriAdi</td>
+                                            <td>@item.Durum.Durumu</td>
+                                            <td>@item.UrunOlusturma</td>
+                                            <td>@item.UrunBitisTarihi</td>
+                                            <td>@item.AltLimit</td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <a class="item" data-toggle="tooltip" data-placement="top" title="Detay" href="@Url.Action("Detay","Post",new { id=item.UrunId})">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </a>
+                                                    <button class="Sil item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" data-target="#exampleModal" name="@item.UrunId">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("AltMenu")
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".Sil").click(function () {
+                if (confirm("Ürünü silmek istediğinizden emin misiniz ??")) {
+                    var ID = $(this).attr('name');
+                    $.ajax({
+                        url: '/Admin/UrunSil/' + ID,
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (data) {
+                            $("#Durum").html(data);
+                        }
+                    });
+                    $(this).parent('td').parent('tr').remove();
+                }
+            });
+        });
+    </script>
+}

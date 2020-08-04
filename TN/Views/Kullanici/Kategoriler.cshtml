@@ -1,0 +1,18 @@
+﻿@model TN.Models.Extended.TumEkranlar
+
+
+
+<div class="aside" style="padding-bottom:30px">
+    <h4 class="title">Kategoriler</h4>
+    <div class="checkbox-filter">
+        @foreach (var i in Model.Kategorilers)
+        {
+            <div class="input-checkbox">
+                <label for="@i.KategoriId">
+                    <a href="@Url.Action("KatGore", "Kullanici", new { id = i.KategoriId })">@i.KategoriAdi</a>
+                    <small>(@i.Urunler.Where(x=>x.KategoriId==i.KategoriId).Count())</small>
+                </label>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model  IEnumerable<TN.Models.Urunler>
+
+
+
+
+<div class="section__content section__content--p30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-data__tool">
+                    <div class="table-data__tool-right">
+                        <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="@Url.Action("UrunEkle","Post")">
+                            <i class="zmdi zmdi-plus"></i>Ürün Ekle
+                        </a>
+
+                    </div>
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr>
+                                <th>İlan No</th>
+                                <th>Başlık</th>
+                                <th>Yayın Durumu</th>
+                                <th>Kategori</th>
+                                <th>Durum</th>
+                                <th>İlan Başlangıç</th>
+                                <th>İlan Bitiş</th>
+                                <th>Alt Limit</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="tr-shadow">
+                                    <td>@item.UrunId</td>
+                                    <td>
+                                        @item.Baslik
+                                    </td>
+                                    <td>
+                                        @item.Yayın
+                                    </td>
+                                    <td>@item.Kategoriler.KategoriAdi</td>
+                                    <td>@item.Durum.Durumu</td>
+                                    <td>@item.UrunOlusturma</td>
+                                    <td>@item.UrunBitisTarihi</td>
+                                    <td>@item.AltLimit<i class="fa fa-try"></i></td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Detay" href="@Url.Action("DetayUrun","Kullanici",new { id=item.UrunId})">
+                                                <i class="zmdi zmdi-mail-send"></i>
+                                            </a>
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Düzenle" href="@Url.Action("UrunDuzenle","Post",new { id=item.UrunId})">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </a>
+                                            <button class="item SilUrunlerim" data-toggle="tooltip" data-placement="top" title="Sil" data-original-title="Delete" data-target="#exampleModal" name="@item.UrunId">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                            <button class="item Kaldir" data-toggle="tooltip" data-placement="top" title="Yayından Kaldır" data-original-title="Yayından Kaldır" data-target="#exampleModal2" name="@item.UrunId">
+                                                <i class="zmdi zmdi-more"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+

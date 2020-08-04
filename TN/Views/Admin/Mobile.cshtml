@@ -1,0 +1,121 @@
+﻿@using TN.Models
+
+
+
+<header class="header-mobile header-mobile-2 d-block d-lg-none">
+    <div class="header-mobile__bar">
+        <div class="container-fluid">
+            <div class="header-mobile-inner">
+                <a class="logo" href="index.html">
+                    <img src="~/Content/img/yazi.png" alt="teklifiNedir">
+                </a>
+                <button class="hamburger hamburger--slider" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar-mobile" style="display: none;">
+        <div class="container-fluid">
+            <ul class="navbar-mobile__list list-unstyled">
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Kategoriler
+                    </a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list" style="display: none;">
+                        <li>
+                            <a href="@Url.Action("Kategoriler","Admin")">Tüm Kategoriler</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="@Url.Action("KategoriEkle","Admin")">
+                        <i class="fas fa-asterisk"></i>
+                        <span class="bot-line"></span>Kategoriler
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Kullanicilar","Admin")">
+                        <i class="fas fa-desktop"></i>
+                        <span class="bot-line"></span>Tüm Kullanıcılar
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-copy"></i>Ürünler
+                    </a>
+                    <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="@Url.Action("Aktif","Admin")">Aktif Ürünler</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Pasif","Admin")">Pasif Ürünler</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="sub-header-mobile-2 d-block d-lg-none">
+    <div class="header__tool">
+        <div class="account-wrap">
+            <div class="account-item account-item--style2 clearfix js-item-menu">
+                <div class="image">
+                    <img src="~/Content/img/logo.png" alt="zZEk">
+                </div>
+                <div class="content">
+                    <a class="js-acc-btn" href="#">@(((User)Session["user"]).FirstName)</a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                    <div class="info clearfix">
+                        <div class="image">
+                            <a href="#">
+                                <img src="~/Content/img/logo.png" alt="zZEk" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <h5 class="name">
+                                <a href="#">@(((User)Session["user"]).FullName)</a>
+                            </h5>
+                            <span class="email"> @(((User)Session["user"]).EmailID)</span>
+                        </div>
+                    </div>
+                    <div class="account-dropdown__body">
+                        <div class="account-dropdown__item">
+                            <a href="@Url.Action("Bilgilerim","Kullanici")">
+                                <i class="zmdi zmdi-account"></i>Bilgilerim
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="@Url.Action("BilgiDuzenle","Kullanici")">
+                                <i class="zmdi zmdi-settings"></i>Ayarlar
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="@Url.Action("IletisimDuzenle","Kullanici")">
+                                <i class="zmdi zmdi-money-box"></i>Adres Bilgileri
+                            </a>
+                        </div>
+                    </div>
+                    <div class="account-dropdown__footer">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                    <i class="zmdi zmdi-power"></i>Çıkış
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

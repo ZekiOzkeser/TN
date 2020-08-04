@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TN.Models.Mesaj>
+
+@{
+    ViewBag.Title = "TumMesajlar";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Tum Mesajlar</h2>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Kime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Gonderen)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UrunId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MesajIcerik)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Okunma)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MesajTarihi)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Kime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Gonderen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UrunId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MesajIcerik)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Okunma)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MesajTarihi)
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink("Delete", "MesajSil", new { id = item.MesajId })
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

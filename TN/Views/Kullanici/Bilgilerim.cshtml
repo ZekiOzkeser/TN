@@ -1,0 +1,65 @@
+﻿@model TN.Models.Extended.UrunKullanici
+
+@{
+    ViewBag.Title = "Bilgilerim";
+    Layout = "~/Views/Shared/_LayoutKul.cshtml";
+}
+@Html.Action("HeaderMobile", "Kullanici")
+
+@Html.Action("HeaderDesktop", "Kullanici")
+
+<div class="page-content--bgf7">
+    <div class="main-content">
+        <div class="section__content--p35">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="au-card">
+
+                            <table class="table">
+                                <tr>
+                                    <td class="title"></td>
+                                    <td class="text"> @Html.DisplayFor(m => m.User.FullName)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Doğum Tarihi</td>
+                                    <td>@Html.DisplayFor(m => m.User.DateOfBirth)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">E-Mail</td>
+                                    <td>@Html.DisplayFor(m => m.User.EmailID)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Üyelik Başlangıç</td>
+                                    <td>@Html.DisplayFor(m => m.User.UyelikBaslangic)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Telefon</td>
+                                    <td>@Html.DisplayFor(m => m.Iletisim.Tel)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">Adres</td>
+                                    <td> @Html.DisplayFor(m => m.Iletisim.Adres)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">İl</td>
+                                    <td>@Html.DisplayFor(m => m.Il.Ad)</td>
+                                </tr>
+                                <tr>
+                                    <td class="title">İlçe</td>
+                                    <td>@Html.DisplayFor(m => m.Ilce.Ad)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a class="btn btn-default" href="@Url.Action("BilgiDuzenle","Kullanici")">Bilgilerimi Düzenle</a>
+                        <a class="btn btn-default" href="@Url.Action("IletisimDuzenle","Kullanici")">İletişim Bilgilerimi Düzenle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@Html.Action("AltMenu")
